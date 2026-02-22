@@ -262,18 +262,27 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7;}
 <h2>Booking Request</h2>
 
 <form action="https://formsubmit.co/blasterbashpartyrentals@gmail.com" method="POST">
+
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://www.blasterbashpartyrentals.com/">
   <input type="hidden" name="_subject" value="New Booking Request - Blaster Bash">
   <input type="hidden" name="_template" value="table">
 
   <input type="text" name="name" placeholder="Your Name" required style="width:100%;padding:10px;margin-bottom:10px;">
+
   <input type="email" name="email" placeholder="Your Email" required style="width:100%;padding:10px;margin-bottom:10px;">
+
   <input type="tel" name="phone" placeholder="Your Phone Number" required style="width:100%;padding:10px;margin-bottom:10px;">
+
   <input type="text" name="event_date" placeholder="Event Date" style="width:100%;padding:10px;margin-bottom:10px;">
+
   <textarea name="requested_rental" placeholder="What would you like to rent?" style="width:100%;padding:10px;margin-bottom:10px;"></textarea>
+
   <textarea name="suggestions" placeholder="Are there any rental items you wish we offered? (Optional — suggestions welcome!)" style="width:100%;padding:10px;margin-bottom:10px;"></textarea>
+
   <button class="btn btn-blue" type="submit">Send Request</button>
+
+</form>
 </form>
 
 </div>
@@ -419,5 +428,6 @@ document.addEventListener('keydown', (e)=>{
 </body>
 
 </html>
+
 
 
