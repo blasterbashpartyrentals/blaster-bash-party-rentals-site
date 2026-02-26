@@ -295,6 +295,17 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7;}
   <input type="text" name="event_date" placeholder="Event Date" style="width:100%;padding:10px;margin-bottom:10px;">
 
   <textarea name="requested_rental" placeholder="What would you like to rent?" style="width:100%;padding:10px;margin-bottom:10px;"></textarea>
+  <div style="margin-top:15px;">
+  <label><strong>Preferred Method of Communication:</strong></label>
+
+  <div style="display:flex; gap:20px; flex-wrap:wrap; margin-top:8px;">
+    <label><input type="checkbox" name="contact_method[]" value="Email"> Email</label>
+    <label><input type="checkbox" name="contact_method[]" value="Text"> Text</label>
+    <label><input type="checkbox" name="contact_method[]" value="Call"> Call</label>
+    <label><input type="checkbox" name="contact_method[]" value="Doesn't Matter"> Doesn't Matter</label>
+    
+  </div>
+</div>
 
   <textarea name="suggestions" placeholder="Are there any rental items you wish we offered? (Optional — suggestions welcome!)" style="width:100%;padding:10px;margin-bottom:10px;"></textarea>
 
@@ -447,6 +458,7 @@ document.addEventListener('keydown', (e)=>{
 </body>
 
 </html>
+
 
 
 
