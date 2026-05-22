@@ -542,8 +542,9 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7;}
 </div>
 
 <div class="lb-ui" id="lb-ui">
-  <button class="lb-arrow lb-prev" id="lb-prev" type="button" onclick="event.stopPropagation(); galleryPrev()">‹</button>
-  <button class="lb-arrow lb-next" id="lb-next" type="button" onclick="event.stopPropagation(); galleryNext()">›</button>
+ <button class="lb-arrow lb-prev" id="lb-prev" type="button" onclick="event.stopPropagation(); changeImage(-1)">‹</button>
+
+<button class="lb-arrow lb-next" id="lb-next" type="button" onclick="event.stopPropagation(); changeImage(1)">›</button>
   <div class="lb-dots" id="lb-dots"></div>
 </div>
 
