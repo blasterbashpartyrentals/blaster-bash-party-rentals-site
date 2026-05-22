@@ -613,85 +613,29 @@ const galleries = {
     "images/parachute1.jpg",
     "images/parachute2.jpg"
   ]
-};
-  ]
-};
-
-let galleryActive = false;
-let currentGallery = null;
+let currentGallery = [];
 let currentIndex = 0;
-let startX = null;
 
-function openGallery(name, idx){
-  galleryActive = true;
-  currentGallery = name;
-  currentIndex = idx || 0;
-  document.getElementById('lightbox-img').src = galleries[name][currentIndex];
-  document.getElementById('lightbox').classList.add('active');
-  document.getElementById('lb-prev').style.display = 'flex';
-  document.getElementById('lb-next').style.display = 'flex';
-  document.getElementById('lb-dots').style.display = 'flex';
-  renderDots();
+function openGallery(name, index) {
+  currentGallery = galleries[name];
+  currentIndex = index || 0;
+  document.getElementById("lightbox-img").src = currentGallery[currentIndex];
+  document.getElementById("lightbox").style.display = "flex";
 }
 
-function galleryNext(){
-  if(!galleryActive) return;
-  const arr = galleries[currentGallery];
-  currentIndex = (currentIndex + 1) % arr.length;
-  document.getElementById('lightbox-img').src = arr[currentIndex];
-  renderDots();
+function changeImage(direction) {
+  if (!currentGallery.length) return;
+  currentIndex += direction;
+
+  if (currentIndex < 0) currentIndex = currentGallery.length - 1;
+  if (currentIndex >= currentGallery.length) currentIndex = 0;
+
+  document.getElementById("lightbox-img").src = currentGallery[currentIndex];
+
 }
-
-function galleryPrev(){
-  if(!galleryActive) return;
-  const arr = galleries[currentGallery];
-  currentIndex = (currentIndex - 1 + arr.length) % arr.length;
-  document.getElementById('lightbox-img').src = arr[currentIndex];
-  renderDots();
-}
-
-function renderDots(){
-  const dotsWrap = document.getElementById('lb-dots');
-  dotsWrap.innerHTML = '';
-  const arr = galleries[currentGallery] || [];
-  arr.forEach((_, i)=>{
-    const dot = document.createElement('div');
-    dot.className = 'lb-dot' + (i === currentIndex ? ' active' : '');
-    dot.addEventListener('click', (e)=>{
-      e.stopPropagation();
-      currentIndex = i;
-      document.getElementById('lightbox-img').src = arr[currentIndex];
-      renderDots();
-    });
-    dotsWrap.appendChild(dot);
-  });
-}
-
-// Swipe support
-const lbImg = document.getElementById('lightbox-img');
-lbImg.addEventListener('touchstart', (e)=>{
-  if(!galleryActive) return;
-  startX = e.touches[0].clientX;
-}, {passive:true});
-
-lbImg.addEventListener('touchend', (e)=>{
-  if(!galleryActive || startX === null) return;
-  const endX = e.changedTouches[0].clientX;
-  const dx = startX - endX;
-  if(dx > 50) galleryNext();
-  if(dx < -50) galleryPrev();
-  startX = null;
-});
-
-// Keyboard arrows
-document.addEventListener('keydown', (e)=>{
-  const active = document.getElementById('lightbox').classList.contains('active');
-  if(!active || !galleryActive) return;
-  if(e.key === 'ArrowRight') galleryNext();
-  if(e.key === 'ArrowLeft') galleryPrev();
-  if(e.key === 'Escape') closeLightbox();
-});
 </script>
+</body>
+</html>
 
 </body>
 </html>
