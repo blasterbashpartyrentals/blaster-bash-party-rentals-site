@@ -621,7 +621,7 @@ function openGallery(name, index) {
   currentGallery = galleries[name];
   currentIndex = index || 0;
   document.getElementById("lightbox-img").src = currentGallery[currentIndex];
-  document.getElementById("lightbox").style.display = "flex";
+  document.getElementById("lightbox").classList.add("active");
 }
 
 function changeImage(direction) {
