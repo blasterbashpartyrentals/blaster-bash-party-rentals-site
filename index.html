@@ -6,7 +6,8 @@
 <title>Nerf Party Rentals & Yard Game Rentals | Beavercreek & Dayton Ohio</title>
 <meta name="description" content="Affordable DIY Nerf Wars and giant yard game rentals in Beavercreek and Dayton Ohio. Perfect for birthdays, backyard parties, and family events. Full weekend rentals available.">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root{
   --blue:#0ea5e9;
@@ -538,16 +539,18 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7;}
 </footer>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lb-arrow lb-prev" type="button" onclick="event.stopPropagation(); changeImage(-1)">‹</button>
+  <button id="lb-prev" class="lb-arrow lb-prev" type="button" onclick="event.stopPropagation(); changeImage(-1)">‹</button>
 
   <img id="lightbox-img" src="" alt="Expanded gallery image">
 
-  <button class="lb-arrow lb-next" type="button" onclick="event.stopPropagation(); changeImage(1)">›</button>
+  <button id="lb-next" class="lb-arrow lb-next" type="button" onclick="event.stopPropagation(); changeImage(1)">›</button>
+
+  <div id="lb-dots" class="lb-dots"></div>
 </div>
+
 <a href="#booking" class="floating-book">Book Now</a>
 
 <script>
-// FAQ accordion - only one open
 document.querySelectorAll('.faq-q').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const item = btn.parentElement;
@@ -558,22 +561,7 @@ document.querySelectorAll('.faq-q').forEach(btn=>{
   });
 });
 
-function openLightbox(src){
-  galleryActive = false;
-  document.getElementById('lb-prev').style.display = 'none';
-  document.getElementById('lb-next').style.display = 'none';
-  document.getElementById('lb-dots').style.display = 'none';
-  document.getElementById('lightbox').classList.add('active');
-}
-
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('active');
-  document.getElementById('lb-prev').style.display = 'none';
-  document.getElementById('lb-next').style.display = 'none';
-  document.getElementById('lb-dots').style.display = 'none';
-  galleryActive = false;
-}
-  const galleries = {
+const galleries = {
   nerf: [
     "images/nerf-wars.jpg",
     "images/nerf1.jpg",
@@ -609,35 +597,68 @@ function closeLightbox(){
 let currentGallery = null;
 let currentIndex = 0;
 
-function openLightbox(src) {
+function openLightbox(src){
   currentGallery = null;
   currentIndex = 0;
   document.getElementById("lightbox-img").src = src;
   document.getElementById("lightbox").classList.add("active");
+  updateGalleryControls();
 }
 
-function openGallery(name, index) {
+function openGallery(name, index){
   currentGallery = galleries[name];
   currentIndex = index || 0;
   document.getElementById("lightbox-img").src = currentGallery[currentIndex];
   document.getElementById("lightbox").classList.add("active");
+  updateGalleryControls();
 }
 
-function changeImage(direction) {
-  if (!currentGallery) return;
+function changeImage(direction){
+  if(!currentGallery) return;
+
   currentIndex += direction;
 
-  if (currentIndex < 0) currentIndex = currentGallery.length - 1;
-  if (currentIndex >= currentGallery.length) currentIndex = 0;
+  if(currentIndex < 0) currentIndex = currentGallery.length - 1;
+  if(currentIndex >= currentGallery.length) currentIndex = 0;
 
   document.getElementById("lightbox-img").src = currentGallery[currentIndex];
+  updateGalleryControls();
 }
 
-function closeLightbox() {
+function updateGalleryControls(){
+  const prev = document.getElementById("lb-prev");
+  const next = document.getElementById("lb-next");
+  const dots = document.getElementById("lb-dots");
+
+  if(currentGallery && currentGallery.length > 1){
+    prev.style.display = "flex";
+    next.style.display = "flex";
+    dots.style.display = "flex";
+
+    dots.innerHTML = currentGallery.map((img, i) =>
+      `<span class="lb-dot ${i === currentIndex ? "active" : ""}" onclick="event.stopPropagation(); goToImage(${i})"></span>`
+    ).join("");
+  } else {
+    prev.style.display = "none";
+    next.style.display = "none";
+    dots.style.display = "none";
+    dots.innerHTML = "";
+  }
+}
+
+function goToImage(index){
+  if(!currentGallery) return;
+  currentIndex = index;
+  document.getElementById("lightbox-img").src = currentGallery[currentIndex];
+  updateGalleryControls();
+}
+
+function closeLightbox(){
   document.getElementById("lightbox").classList.remove("active");
+  currentGallery = null;
+  currentIndex = 0;
+  updateGalleryControls();
 }
 </script>
 </body>
 </html>
-
-
