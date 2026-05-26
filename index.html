@@ -538,16 +538,12 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7;}
 </footer>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-arrow lb-prev" type="button" onclick="event.stopPropagation(); changeImage(-1)">‹</button>
+
   <img id="lightbox-img" src="" alt="Expanded gallery image">
+
+  <button class="lb-arrow lb-next" type="button" onclick="event.stopPropagation(); changeImage(1)">›</button>
 </div>
-
-<div class="lb-ui" id="lb-ui">
- <button class="lb-arrow lb-prev" id="lb-prev" type="button" onclick="event.stopPropagation(); changeImage(-1)">‹</button>
-
-<button class="lb-arrow lb-next" id="lb-next" type="button" onclick="event.stopPropagation(); changeImage(1)">›</button>
-  <div class="lb-dots" id="lb-dots"></div>
-</div>
-
 <a href="#booking" class="floating-book">Book Now</a>
 
 <script>
@@ -568,7 +564,6 @@ function openLightbox(src){
   document.getElementById('lb-next').style.display = 'none';
   document.getElementById('lb-dots').style.display = 'none';
   document.getElementById('lightbox').classList.add('active');
-  document.getElementById('lightbox').classList.add('active');
 }
 
 function closeLightbox(){
@@ -578,8 +573,7 @@ function closeLightbox(){
   document.getElementById('lb-dots').style.display = 'none';
   galleryActive = false;
 }
-
-const galleries = {
+  const galleries = {
   nerf: [
     "images/nerf-wars.jpg",
     "images/nerf1.jpg",
@@ -593,29 +587,34 @@ const galleries = {
     "images/nerf-03-open-totes.jpg",
     "images/nerf-04-closed-totes.jpg"
   ],
-
   colorstack: [
     "images/giant-color-stack.png",
     "images/giant-color-stack-kids-playing.png",
     "images/giant-color-stack-kids-playing-2.png"
   ],
-
   lawnpong: [
     "images/lawn-pong.png",
     "images/lawn-pong-buckets.png"
   ],
-
   golf: [
     "images/golf-chipping-game-grass.png",
     "images/golf-chipping-game.png"
   ],
-
   parachute: [
     "images/parachute1.jpg",
     "images/parachute2.jpg"
   ]
-let currentGallery = [];
+};
+
+let currentGallery = null;
 let currentIndex = 0;
+
+function openLightbox(src) {
+  currentGallery = null;
+  currentIndex = 0;
+  document.getElementById("lightbox-img").src = src;
+  document.getElementById("lightbox").classList.add("active");
+}
 
 function openGallery(name, index) {
   currentGallery = galleries[name];
@@ -625,14 +624,17 @@ function openGallery(name, index) {
 }
 
 function changeImage(direction) {
-  if (!currentGallery.length) return;
+  if (!currentGallery) return;
   currentIndex += direction;
 
   if (currentIndex < 0) currentIndex = currentGallery.length - 1;
   if (currentIndex >= currentGallery.length) currentIndex = 0;
 
   document.getElementById("lightbox-img").src = currentGallery[currentIndex];
+}
 
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("active");
 }
 </script>
 </body>
