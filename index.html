@@ -59,6 +59,7 @@ body{
 }
 
 .card{
+  position:relative;
   background:#fff;
   border-radius:10px;
   padding:16px;
@@ -82,6 +83,19 @@ body{
 .card img.img-classic{object-position:center 35%;}
 .card img.img-tall{object-position:center 20%;}
 .card img:hover{transform:scale(1.03);}
+
+.gallery-badge{
+  position:absolute;
+  bottom:130px;
+  right:24px;
+  background:rgba(17,24,39,.82);
+  color:white;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+  pointer-events:none;
+}
 
 .card .btn{
   margin-top:auto;
@@ -269,20 +283,21 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7;}
 
     <div class="grid">
 
-      <div class="card">
-        <img src="images/nerf-wars.jpg" alt="DIY Nerf Wars rental package with foam dart blasters and barricades" onclick="openGallery('nerf',0)">
-        <strong>Nerf Wars – $60 Weekend Rental</strong>
-        <br><small>+$40 refundable security deposit required</small>
-        <ul>
-          <li>25 blasters</li>
-          <li>250 darts</li>
-          <li>25 safety glasses</li>
-          <li>6 barricades</li>
-          <li>Electric air pump</li>
-          <li>2 storage totes — 30.6&quot; L × 20.6&quot; W × 14.3&quot; H (each)</li>
-        </ul>
-        <a href="#booking" class="btn btn-blue">Book Now</a>
-      </div>
+    <div class="card">
+  <img src="images/nerf-wars.jpg" alt="DIY Nerf Wars rental package with foam dart blasters and barricades" onclick="openGallery('nerf',0)">
+  <div class="gallery-badge">View More Photos</div>
+  <strong>Nerf Wars – $60 Weekend Rental</strong>
+  <br><small>+$40 refundable security deposit required</small>
+  <ul>
+    <li>25 blasters</li>
+    <li>250 darts</li>
+    <li>25 safety glasses</li>
+    <li>6 barricades</li>
+    <li>Electric air pump</li>
+    <li>2 storage totes — 30.6&quot; L × 20.6&quot; W × 14.3&quot; H (each)</li>
+  </ul>
+  <a href="#booking" class="btn btn-blue">Book Now</a>
+</div>
 
       <div class="card">
         <img class="img-classic" src="images/classic-yard-games.png" alt="Classic Yard Games Package including cornhole, giant jenga, washers, and giant yatzee" onclick="openLightbox(this.src)">
@@ -357,6 +372,7 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7;}
   </div>
 
 <div class="section">
+<div class="section">
   <h2>Add-On Games (Only $10 Each if added on! $15 stand alone)</h2>
   <div class="add-on-grid">
 
@@ -377,22 +393,26 @@ footer{text-align:center;padding:20px;font-size:14px;opacity:.7;}
 
     <div class="card">
       <img src="images/giant-color-stack.png" alt="Giant Color Stack outdoor stacking game" onclick="openGallery('colorstack',0)">
+      <div class="gallery-badge">View More Photos</div>
       <strong>Giant Color Stack</strong> - $10 add-on
     </div>
 
     <div class="card">
       <img src="images/lawn-pong.png" alt="Lawn Pong backyard bucket game" onclick="openGallery('lawnpong',0)">
+      <div class="gallery-badge">View More Photos</div>
       <strong>Lawn Pong</strong> - $10 add-on
-      <br><small>12 buckets (8.5&quot; diameter x 7.5&quot; tall)</small>
+      <br><small>12 buckets (8.5" diameter x 7.5" tall)</small>
     </div>
 
     <div class="card">
       <img src="images/golf-chipping-game-grass.png" alt="Golf chipping game" onclick="openGallery('golf',0)">
+      <div class="gallery-badge">View More Photos</div>
       <strong>Golf Chipping</strong> - $10 add-on
     </div>
 
     <div class="card">
       <img src="images/parachute1.jpg" alt="Large play parachute" onclick="openGallery('parachute',0)">
+      <div class="gallery-badge">View More Photos</div>
       <strong>Large Parachute</strong> - $10 add-on
       <br><small>Large group play parachute</small>
     </div>
